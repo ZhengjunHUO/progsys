@@ -22,6 +22,7 @@ int main() {
 	if ( nr == -1 ) {
 		const int err = errno;
 		fprintf(stderr, "Error reading file : %s [%d]\n", strerror(err), err);
+		close(fd);
 		return EXIT_FAILURE;
 	}
 
