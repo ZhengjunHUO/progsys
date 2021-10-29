@@ -6,7 +6,7 @@
 #include <string.h>
 
 int main() {
-	int fd = open("/tmp/helloworld", O_WRONLY, 0664);
+	int fd = open("/tmp/helloworld", O_WRONLY | O_SYNC, 0664);
 	if (fd == -1) {
 		const int err = errno;
 		fprintf(stderr, "Open file failed: %s [%d]\n", strerror(err), err);
@@ -29,6 +29,9 @@ int main() {
 
 	printf("Written to file: \n%s\n", buf);
 
-	close(fd);
+	if (close(fd) == -1) {
+		perror ("Close file failed!");
+		return EXIT_FAILURE;
+	}
 	return EXIT_SUCCESS;
 }

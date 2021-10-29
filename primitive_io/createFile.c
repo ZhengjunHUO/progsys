@@ -15,6 +15,9 @@ int main() {
 	}
 
 	printf("Create file [fd: %d] successed!\n", fd);
-	close(fd);
+	if (close(fd) == -1) {
+		perror ("Close file failed!");
+		return EXIT_FAILURE;
+	}
 	return EXIT_SUCCESS;
 }

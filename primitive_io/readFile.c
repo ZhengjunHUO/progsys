@@ -28,6 +28,9 @@ int main() {
 
 	printf("Read from file: \n%s\n", buf);
 
-	close(fd);
+	if (close(fd) == -1) {
+		perror ("Close file failed!");
+		return EXIT_FAILURE;
+	}
 	return EXIT_SUCCESS;
 }
