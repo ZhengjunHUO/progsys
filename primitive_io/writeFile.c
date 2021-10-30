@@ -23,7 +23,7 @@ int main() {
 		return EXIT_FAILURE;
 	}
 
-	if ( nr != strlen(buf)) {
+	if ( nr != (ssize_t)strlen(buf)) {
 		fprintf(stderr, "Partial writes!\n");
 	}
 
