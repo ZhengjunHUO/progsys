@@ -5,20 +5,21 @@
 
 int main() {
 	printf("Initailly: ");
-	if(get_sched_policy(0)) {
+	if(get_sched_policy(0))
 		return EXIT_FAILURE;
-	}
 
 	struct sched_param sp = { .sched_priority = 1 };
-	if (sched_setscheduler(0, SCHED_FIFO, &sp)) {
+	if (sched_setscheduler(0, SCHED_RR, &sp)) {
 		perror("setscheduler");
 		return EXIT_FAILURE;
 	}
 
 	printf("After set: ");
-	if(get_sched_policy(0)) {
+	if(get_sched_policy(0))
 		return EXIT_FAILURE;
-	}
+
+	if(get_rr_interval(0))
+		return EXIT_FAILURE;
 
 	sp.sched_priority = 2;
 	if(sched_setparam(0, &sp)) {
