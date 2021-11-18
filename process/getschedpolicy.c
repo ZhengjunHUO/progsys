@@ -26,6 +26,7 @@ int get_sched_policy(int pid) {
 	return 0;
 } 
 
+/*
 int main() {
 	// Get current process's sheduling policy
 	if(get_sched_policy(0)) {
@@ -34,3 +35,4 @@ int main() {
       	
 	return EXIT_SUCCESS;
 }
+*/
