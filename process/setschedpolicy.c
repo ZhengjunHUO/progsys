@@ -20,5 +20,19 @@ int main() {
 		return EXIT_FAILURE;
 	}
 
+	sp.sched_priority = 2;
+	if(sched_setparam(0, &sp)) {
+		perror("setparam");
+		return EXIT_FAILURE;
+	}
+
+	struct sched_param spbis;
+	if(sched_getparam(0, &spbis)) {
+		perror("setparam");
+		return EXIT_FAILURE;
+	}
+
+	printf("Set priority to %d!\n", spbis.sched_priority);
+
 	return EXIT_SUCCESS;
 }
