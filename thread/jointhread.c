@@ -13,7 +13,7 @@ void * thread_run(void *text) {
 		printf("%s\n", (const char*) text);
 	}
 
-	return (void *)tid;
+	pthread_exit((void *)tid);
 }
 
 int main() {
