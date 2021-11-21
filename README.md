@@ -7,3 +7,6 @@
 
 ## Process
 - [basic syscall](https://github.com/ZhengjunHUO/progsys/tree/main/process)
+
+## Thread 
+- [glibc pthread](https://github.com/ZhengjunHUO/progsys/tree/main/thread)
