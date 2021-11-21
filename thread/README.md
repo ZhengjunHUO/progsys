@@ -1,7 +1,5 @@
-## Need to link libpthread when compiling jointhread.c 
-```bash
-gcc -Wall -Wextra -O2 -g -pthread -o main jointhread.c
-```
+# Need to link libpthread when compiling pthread related program
+
 ## Compile mutex.c and execute
 ```bash
 $ gcc -Wall -Wextra -pthread -O2 -g -o test mutex.c
