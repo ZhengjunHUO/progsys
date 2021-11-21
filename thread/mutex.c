@@ -1,7 +1,22 @@
 #include <pthread.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <sys/syscall.h>
+
 #include "mutex.h"
+
+struct Compte account = {"huo", 1000, PTHREAD_MUTEX_INITIALIZER};
+
+void * thread_run(void *somme) {
+	pid_t * tid = malloc(sizeof(pid_t));
+	*tid = syscall(SYS_gettid);
+
+	printf("Thread[%d]: ", *tid);
+	encaisser(&account, *((int *)somme));
+
+	pthread_exit((void *)tid);
+}
 
 void distribute(int somme) {
 	printf("Get $%d!\n", somme);
@@ -24,10 +39,16 @@ int encaisser(struct Compte *account, int somme) {
 }
 
 int main() {
-	struct Compte account = {"huo", 1000, PTHREAD_MUTEX_INITIALIZER};
-	
 	printf("The solde was $%d.\n", (&account)->solde);
-	encaisser(&account, 600);
+
+	pthread_t t1, t2;
+	int somme1=300, somme2=900;
+	pthread_create(&t1, NULL, thread_run, (void *) &somme1);
+	pthread_create(&t2, NULL, thread_run, (void *) &somme2);
+
+	pthread_join(t1, NULL);
+	pthread_join(t2, NULL);
+
 	printf("The solde is $%d.\n", (&account)->solde);
 	return EXIT_SUCCESS;	
 }
