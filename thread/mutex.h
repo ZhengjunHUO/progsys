@@ -6,4 +6,5 @@ struct Compte {
 	pthread_mutex_t lock;
 };
 
-
+extern int encaisser(struct Compte *account, int somme);
+extern void distribute(int somme);
