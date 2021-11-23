@@ -10,3 +10,6 @@
 
 ## Thread 
 - [glibc pthread](https://github.com/ZhengjunHUO/progsys/tree/main/thread)
+
+## File system
+- [file & directory](https://github.com/ZhengjunHUO/progsys/tree/main/file)
