@@ -32,10 +32,17 @@ int main() {
 
 	while(p < ret) {
 		struct inotify_event *event = (struct inotify_event *) &buf[p];
-		printf("**********\nEvent detail:\nwd: %d; mask: %d; cookie: %d\n", event->wd, event->mask, event->cookie);
+		printf("**********\nEvent detail:\nwd: %d; cookie: %d\n", event->wd, event->cookie);
 		if(event->len){
-			printf("filename: %s (length: %d)\n", event->name, event->len);
+			printf("File: %s [length: %d] ", event->name, event->len);
 		}
+
+		if (event->mask & IN_CREATE)
+			printf("created.\n");	
+		if (event->mask & IN_DELETE)
+			printf("deleted.\n");
+		if (event->mask & IN_MODIFY)
+			printf("modified.\n");
 
 		p += sizeof(struct inotify_event) + event->len;
 	}
