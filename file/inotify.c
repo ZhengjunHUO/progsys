@@ -25,6 +25,21 @@ int main() {
 
 	printf("new watch with wd[%d] attach to inotify instance\n", wd);
 
+	// (3) read events
+	int p = 0;
+	char buf[BUF_SIZE];
+	ssize_t ret = read(fd, buf, BUF_SIZE);
+
+	while(p < ret) {
+		struct inotify_event *event = (struct inotify_event *) &buf[p];
+		printf("**********\nEvent detail:\nwd: %d; mask: %d; cookie: %d\n", event->wd, event->mask, event->cookie);
+		if(event->len){
+			printf("filename: %s (length: %d)\n", event->name, event->len);
+		}
+
+		p += sizeof(struct inotify_event) + event->len;
+	}
+
 	// remove watch
 	if(inotify_rm_watch(fd, wd))
 		perror("inotify_rm_watch");
