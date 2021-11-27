@@ -5,7 +5,7 @@
 #define BUF_SIZE 4096
 
 int main() {
-	void *buf = xmalloc(BUF_SIZE);
+	void *buf = xmalloc0(BUF_SIZE);
 
 	printf("Xmalloc success!\n");
 	free(buf);
