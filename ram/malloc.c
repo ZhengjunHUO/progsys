@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <malloc.h>
 
 #define BUF_SIZE 4096
 
@@ -11,6 +12,7 @@ int main() {
 	}
 
 	printf("Malloc success!\n");
+	malloc_stats();
 	free(buf);
 
 	return EXIT_SUCCESS;
