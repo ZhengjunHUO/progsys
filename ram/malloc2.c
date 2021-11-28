@@ -8,6 +8,7 @@ int main() {
 	void *buf = xmalloc0(BUF_SIZE);
 
 	printf("Xmalloc success!\n");
+	printmallinfo();
 	free(buf);
 
 	return EXIT_SUCCESS;
