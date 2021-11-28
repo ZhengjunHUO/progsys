@@ -1,7 +1,6 @@
 #include <sys/mman.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <malloc.h>
 
 #define KBSIZE 1024
 #define MBSIZE KBSIZE*KBSIZE
