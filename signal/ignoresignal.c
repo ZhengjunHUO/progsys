@@ -22,6 +22,7 @@ int main() {
 		return EXIT_FAILURE;
 	}
 
+	printf("Run # kill -SIGKILL %d to kill me!\n", getpid());
 	// use # kill -SIGKILL <PID> to end this process
 	pause();
 
