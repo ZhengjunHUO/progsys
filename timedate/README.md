@@ -15,3 +15,8 @@ Done !
 # Or in another terminal
 kill -SIGINT 5828
 ```
+
+### POSIX Timer
+```bash
+gcc -Wall -Wextra -lrt -O2 -g -o timer timer.c
+```
