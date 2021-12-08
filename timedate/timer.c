@@ -2,8 +2,14 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+
+void myhandler(int signo) {
+	printf("Receive signal [%s]\n", sys_siglist[signo]);
+}
 
 int main() {
+	// create a timer 
 	timer_t t;
 	struct sigevent sev;
 
@@ -16,8 +22,32 @@ int main() {
 		perror("timer_create");
 		return EXIT_FAILURE;
 	}
-
 	printf("Timer created!\n");
+
+	// arm a timer
+	struct itimerspec ts;
+	ts.it_interval.tv_sec = 3;
+	ts.it_interval.tv_nsec = 0;
+	ts.it_value.tv_sec = 1;
+	ts.it_value.tv_nsec = 0;
+
+	if (timer_settime(t, 0, &ts, NULL)) {
+		perror("timer_settime");
+	}
+
+	if (signal(SIGUSR2, myhandler) == SIG_ERR) {
+		perror("signal");
+	}
+
+	pause();
+
+	// remove a timer
+	if (timer_delete(t)) {
+		perror("timer_delete");
+		return EXIT_FAILURE;
+	}
+
+	printf("Timer deleted!\n");
 
 	return EXIT_SUCCESS;
 }
