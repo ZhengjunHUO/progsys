@@ -1,0 +1,15 @@
+CC=gcc
+CFLAGS=-I.
+DEPS = helloapp.h
+OBJS = helloapp.o appfunc.o 
+
+# $@ indicates the token before ':', here => %.o
+# $< indicates the first dependency after ':', here => %.c
+# $^ indicates all dependencies after ':', here => %.c $(DEPS)
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+# $^ indicates all dependencies after ':', here => $(OBJS)
+.PHONY: app
+app: $(OBJS)
+	$(CC) -o helloapp $^
