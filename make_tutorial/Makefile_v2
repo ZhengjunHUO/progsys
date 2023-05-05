@@ -1,0 +1,6 @@
+CC=gcc
+CFLAGS=-I.
+
+.PHONY: app
+app: helloapp.o appfunc.o
+	$(CC) -o helloapp helloapp.o appfunc.o

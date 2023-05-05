@@ -1,0 +1,3 @@
+.PHONY: app
+app: helloapp.c appfunc.c
+	gcc -o helloapp helloapp.c appfunc.c -I.
