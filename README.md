@@ -1,5 +1,11 @@
 # System programming
 
+```sh
+# Formatter
+$ clang-format -style=llvm -dump-config > .clang-format
+$ clang-format -style=file -i foo.c
+```
+
 ## Disk IO
 - [basic syscall](https://github.com/ZhengjunHUO/progsys/tree/main/primitive_io)
 - [standard io library](https://github.com/ZhengjunHUO/progsys/tree/main/buffered_io)
